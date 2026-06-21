@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>gg扑克 · 持续关注与再次访问</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.7;
+            color: #1f2937;
+            background-color: #f9fafb;
+        }
+
+        /* 深色头图 */
+        .header-hero {
+            background: linear-gradient(145deg, #0b1a2e 0%, #142b44 100%);
+            color: #e6edf5;
+            padding: 2.8rem 1.5rem 4rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header-hero::after {
+            content: "";
+            position: absolute;
+            top: -40%;
+            left: -30%;
+            width: 160%;
+            height: 160%;
+            background: radial-gradient(circle at 70% 20%, rgba(99, 163, 233, 0.04) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .header-inner {
+            max-width: 1000px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .top-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem 0.5rem;
+            margin-bottom: 3.2rem;
+        }
+
+        .site-name {
+            font-size: 1.6rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            color: #cddcee;
+        }
+
+        .site-name span {
+            color: #7bb3e0;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.2rem;
+            flex-wrap: wrap;
+            font-size: 0.95rem;
+        }
+
+        .nav-links a {
+            color: #b0cae3;
+            text-decoration: none;
+            padding: 0.2rem 0;
+            border-bottom: 1px solid transparent;
+            transition: 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: #ffffff;
+            border-bottom-color: #78b0e0;
+        }
+
+        .hero-title {
+            font-size: 2.6rem;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 1.2rem;
+            letter-spacing: -0.01em;
+        }
+
+        .hero-sub {
+            font-size: 1.15rem;
+            max-width: 680px;
+            margin: 0 auto 1.5rem;
+            color: #c8d9ec;
+        }
+
+        .hero-meta {
+            font-size: 0.9rem;
+            color: #8aaac9;
+            background: rgba(255, 255, 255, 0.06);
+            display: inline-block;
+            padding: 0.4rem 1.2rem;
+            border-radius: 40px;
+        }
+
+        /* 正文浅色区域 */
+        .main-content {
+            max-width: 1000px;
+            margin: -1.8rem auto 3rem;
+            padding: 0 1.5rem;
+            position: relative;
+            z-index: 3;
+        }
+
+        .intro-card {
+            background: #ffffff;
+            border-radius: 28px 28px 20px 20px;
+            box-shadow: 0 8px 28px rgba(0,0,0,0.04), 0 2px 6px rgba(0,0,0,0.02);
+            padding: 2.6rem 2.4rem 2.2rem;
+            margin-bottom: 2.8rem;
+        }
+
+        .intro-card h2 {
+            font-size: 1.6rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #0f263a;
+            border-left: 4px solid #3f80c0;
+            padding-left: 1rem;
+        }
+
+        .intro-card p {
+            margin-bottom: 1.2rem;
+            color: #334155;
+        }
+
+        .intro-card a {
+            color: #1660a8;
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 1px solid rgba(22, 96, 168, 0.25);
+            transition: 0.15s;
+        }
+
+        .intro-card a:hover {
+            color: #0a3b6b;
+            border-bottom-color: #0a3b6b;
+        }
+
+        .highlight-text {
+            background: #f1f6fd;
+            padding: 0.1rem 0.4rem;
+            border-radius: 4px;
+            font-weight: 500;
+            color: #134a7a;
+        }
+
+        /* 三个场景模块 */
+        .scenes-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.8rem;
+            margin: 2.6rem 0 1.2rem;
+        }
+
+        .scene-item {
+            background: #f8faff;
+            border-radius: 20px;
+            padding: 1.8rem 1.6rem 1.6rem;
+            border: 1px solid #e6edf6;
+            transition: 0.2s;
+        }
+
+        .scene-item:hover {
+            border-color: #c5d9ef;
+            background: #f5faff;
+            box-shadow: 0 6px 16px rgba(0, 50, 100, 0.04);
+        }
+
+        .scene-item .emoji-badge {
+            display: inline-block;
+            font-size: 2rem;
+            margin-bottom: 0.7rem;
+        }
+
+        .scene-item h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #0d243b;
+        }
+
+        .scene-item p {
+            font-size: 0.95rem;
+            color: #3b4d62;
+            margin-bottom: 0.4rem;
+        }
+
+        .scene-item .tag {
+            display: inline-block;
+            background: #dce8f5;
+            color: #1a4b7a;
+            font-size: 0.75rem;
+            padding: 0.2rem 0.9rem;
+            border-radius: 40px;
+            margin-top: 0.4rem;
+        }
+
+        /* 常见说明 */
+        .faq-section {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 2rem 2.2rem 2.2rem;
+            margin: 2rem 0 2.4rem;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.02);
+            border: 1px solid #eef3f9;
+        }
+
+        .faq-section h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 1.4rem;
+            color: #0d243b;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .faq-item {
+            padding: 0.9rem 0;
+            border-bottom: 1px dashed #e0e9f2;
+        }
+
+        .faq-item:last-child {
+            border-bottom: none;
+        }
+
+        .faq-q {
+            font-weight: 600;
+            color: #153652;
+            margin-bottom: 0.2rem;
+        }
+
+        .faq-a {
+            color: #3f556a;
+            font-size: 0.95rem;
+        }
+
+        .faq-a a {
+            color: #1660a8;
+            border-bottom: 1px solid #b8d2ef;
+            text-decoration: none;
+        }
+
+        .faq-a a:hover {
+            color: #0a3b6b;
+            border-bottom-color: #0a3b6b;
+        }
+
+        .footnote {
+            text-align: center;
+            font-size: 0.85rem;
+            color: #6f829c;
+            padding: 2rem 0 0.8rem;
+            border-top: 1px solid #e6edf7;
+            margin-top: 0.6rem;
+        }
+
+        /* 响应式 */
+        @media (max-width: 820px) {
+            .hero-title {
+                font-size: 2rem;
+            }
+            .scenes-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .intro-card {
+                padding: 1.8rem 1.4rem;
+            }
+            .faq-section {
+                padding: 1.6rem 1.4rem;
+            }
+        }
+
+        @media (max-width: 540px) {
+            .top-nav {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+            }
+            .nav-links {
+                gap: 1.2rem;
+            }
+            .hero-title {
+                font-size: 1.7rem;
+            }
+            .scenes-grid {
+                grid-template-columns: 1fr;
+            }
+            .header-hero {
+                padding: 1.8rem 1rem 3rem;
+            }
+            .main-content {
+                padding: 0 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 深色头图 + 导航 -->
+    <header class="header-hero">
+        <div class="header-inner">
+            <div class="top-nav">
+                <div class="site-name"><span>⋮</span> gg·poker</div>
+                <div class="nav-links">
+                    <a href="#">再次访问</a>
+                    <a href="#">收藏</a>
+                    <a href="#">关注</a>
+                    <a href="#">帮助</a>
+                </div>
+            </div>
+            <h1 class="hero-title">记住它，收藏它，再次回来</h1>
+            <p class="hero-sub">一个值得持续关注的页面 —— 无论你何时想起，它都在这里。</p>
+            <div class="hero-meta">· 轻量导航 · 三个场景 · 常见说明</div>
+        </div>
+    </header>
+
+    <!-- 正文浅色区 -->
+    <div class="main-content">
+
+        <!-- 核心介绍 -->
+        <div class="intro-card">
+            <h2>关于 <a href="https://m-gg-poker.com">gg扑克</a> · 为什么你要收藏它</h2>
+            <p>有些页面你只想浏览一次，而另一些则值得你加入书签，在需要时再次打开。<span class="highlight-text">gg扑克</span> 正是后者。它不是一个需要反复注册或追逐短期活动的地方，而是一个你可以安静存放、想起来时再来看一眼的角落。</p>
+            <p>这个页面整理了关于 <a href="https://m-gg-poker.com">gg扑克</a> 的基本信息、常见疑问以及三个典型场景，帮助你快速理解它的定位。没有浮夸的标语，只有认真整理过的说明。如果你之前来过，这里的内容依然平稳可靠；如果你是第一次看到，不妨先收藏它，留待以后。</p>
+            <p>在如今信息过载的网络中，能有一个让你愿意“再次访问”的站点并不多。<a href="https://m-gg-poker.com">gg扑克</a> 希望成为其中之一。</p>
+        </div>
+
+        <!-- 三个场景模块 -->
+        <h2 style="font-weight: 600; font-size: 1.4rem; margin: 1.2rem 0 0.2rem; color: #0f263a;">三个常见场景</h2>
+        <div class="scenes-grid">
+            <div class="scene-item">
+                <div class="emoji-badge">📑</div>
+                <h3>场景一：再次访问</h3>
+                <p>你之前看过这个页面，但当时没有细读。现在你又有兴趣了，想重新回到这里。收藏它，下次直接打开即可，无需搜索。</p>
+                <span class="tag">书签</span>
+            </div>
+            <div class="scene-item">
+                <div class="emoji-badge">⭐</div>
+                <h3>场景二：保存待用</h3>
+                <p>你暂时不需要它，但觉得未来可能有用。把 <strong>gg扑克</strong> 放进收藏夹或备忘录，等你准备好了再回来看。</p>
+                <span class="tag">稍后</span>
+            </div>
+            <div class="scene-item">
+                <div class="emoji-badge">🔁</div>
+                <h3>场景三：持续关注</h3>
+                <p>你希望保持对 <a href="https://m-gg-poker.com" style="border-bottom: none; color: #1660a8; font-weight: 500;">gg扑克</a> 的留意，但不一定天天查看。每隔一段时间访问一次，了解是否有更新。</p>
+                <span class="tag">定期</span>
+            </div>
+        </div>
+
+        <!-- 常见说明 FAQ 摘要 -->
+        <div class="faq-section">
+            <h3>❓ 常见说明</h3>
+            <div class="faq-item">
+                <div class="faq-q">这个页面是做什么的？</div>
+                <div class="faq-a">它是一个介绍页，围绕 <a href="https://m-gg-poker.com">gg扑克</a> 整理了一些基础内容、使用场景和常见问题，方便你快速了解。</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q">为什么我要收藏它？</div>
+                <div class="faq-a">因为当你之后想再次了解 <a href="https://m-gg-poker.com">gg扑克</a> 时，收藏可以帮你省去重新搜索的时间。页面内容保持平稳，不会频繁变动。</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q">这个页面会经常更新吗？</div>
+                <div class="faq-a">本页作为基础说明，不会频繁改动。建议每隔一段时间回访一次，了解是否有补充。你可以把 <a href="https://m-gg-poker.com">gg扑克</a> 加入书签，随时回来看。</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q">如何快速回到这个页面？</div>
+                <div class="faq-a">使用浏览器的收藏功能，或者直接记住 <a href="https://m-gg-poker.com">gg扑克</a> 的地址。我们建议你添加书签，这样下次只需单击即可。</div>
+            </div>
+        </div>
+
+        <div class="footnote">
+            一个值得再次访问的页面 · 收藏它，持续关注
+        </div>
+    </div>
+
+</body>
+</html>
