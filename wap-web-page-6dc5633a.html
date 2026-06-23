@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MK体育 · 轻量移动端体育平台</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #f5f7fa;
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      line-height: 1.6;
+      color: #1e1e2a;
+    }
+
+    .hero {
+      background: linear-gradient(145deg, #0b1420 0%, #1a2636 100%);
+      color: #f0f3f8;
+      padding: 4rem 2rem 3.2rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      width: 100%;
+      height: 50px;
+      background: #f5f7fa;
+      border-radius: 50% 50% 0 0 / 100% 100% 0 0;
+      transform: scaleX(1.5);
+    }
+
+    .hero-inner {
+      max-width: 720px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero h1 {
+      font-size: 2.2rem;
+      font-weight: 500;
+      letter-spacing: 1px;
+      margin-bottom: 0.6rem;
+    }
+
+    .hero .tagline {
+      font-size: 1.2rem;
+      font-weight: 300;
+      color: #b0c7e0;
+      margin-bottom: 0.2rem;
+    }
+
+    .hero .sub {
+      font-size: 0.95rem;
+      color: #8fa3bd;
+      margin-top: 0.5rem;
+    }
+
+    .container {
+      max-width: 960px;
+      margin: -2rem auto 2rem;
+      padding: 0 1.8rem;
+      position: relative;
+      z-index: 3;
+    }
+
+    .intro-card {
+      background: #ffffff;
+      border-radius: 18px;
+      padding: 2rem 2.2rem;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
+      margin-bottom: 2rem;
+    }
+
+    .intro-card p {
+      margin-bottom: 1.2rem;
+      font-size: 1.02rem;
+    }
+
+    .intro-card p:last-child {
+      margin-bottom: 0;
+    }
+
+    .accent-link {
+      color: #2862b9;
+      text-decoration: none;
+      font-weight: 500;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    .accent-link:hover {
+      border-bottom-color: #2862b9;
+      color: #153b73;
+    }
+
+    .traits-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin: 2rem 0 2.5rem;
+    }
+
+    .trait-item {
+      background: #f9fafc;
+      border-radius: 14px;
+      padding: 1.3rem 1.5rem;
+      transition: box-shadow 0.2s, background 0.2s;
+    }
+
+    .trait-item:hover {
+      background: #eef2f8;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+    }
+
+    .trait-item h3 {
+      font-size: 1.1rem;
+      font-weight: 500;
+      margin-bottom: 0.4rem;
+      color: #1a2636;
+    }
+
+    .trait-item p {
+      font-size: 0.93rem;
+      color: #3e4a5a;
+    }
+
+    .scene-section {
+      background: #ffffff;
+      border-radius: 18px;
+      padding: 1.8rem 2.2rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
+    }
+
+    .scene-section h2 {
+      font-size: 1.3rem;
+      font-weight: 500;
+      margin-bottom: 0.8rem;
+      color: #1e2a3a;
+    }
+
+    .scene-section p {
+      color: #2c3749;
+      margin-bottom: 0.8rem;
+    }
+
+    .faq-mini {
+      background: #ffffff;
+      border-radius: 18px;
+      padding: 1.6rem 2.2rem 2rem;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
+      margin-bottom: 2rem;
+    }
+
+    .faq-mini h2 {
+      font-size: 1.25rem;
+      font-weight: 500;
+      margin-bottom: 1rem;
+      color: #1e2a3a;
+    }
+
+    .faq-item {
+      margin-bottom: 1.1rem;
+    }
+
+    .faq-item strong {
+      display: block;
+      font-weight: 500;
+      color: #1f2b3b;
+      margin-bottom: 0.2rem;
+    }
+
+    .faq-item p {
+      font-size: 0.95rem;
+      color: #3d4b5d;
+    }
+
+    .outro-note {
+      text-align: center;
+      padding: 1.8rem 1rem 2.8rem;
+      max-width: 700px;
+      margin: 0 auto;
+      color: #3f4e62;
+    }
+
+    .outro-note p {
+      font-size: 0.98rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .outro-note small {
+      color: #6d7e93;
+      font-size: 0.85rem;
+    }
+
+    @media (max-width: 640px) {
+      .hero h1 {
+        font-size: 1.7rem;
+      }
+
+      .hero .tagline {
+        font-size: 1rem;
+      }
+
+      .container {
+        padding: 0 1rem;
+      }
+
+      .intro-card {
+        padding: 1.6rem 1.4rem;
+      }
+
+      .traits-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+
+      .scene-section, .faq-mini {
+        padding: 1.4rem 1.2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <section class="hero">
+    <div class="hero-inner">
+      <p class="tagline">想快速了解一个平台</p>
+      <h1>先看它怎么回答一个简单问题</h1>
+      <p class="sub">—— 这里是什么？用来做什么？</p>
+    </div>
+  </section>
+
+  <div class="container">
+
+    <div class="intro-card">
+      <p>
+        手机浏览器里输入一串网址，页面打开的一瞬间，你其实是带着一个模糊期待的：希望它界面干净、反应快、功能一目了然。
+        <a href="https://wap-web-mksports.com" class="accent-link">MK体育</a> 正是朝着这个方向走的——一个为移动端优化过的轻量体育信息与互动平台。
+      </p>
+      <p>
+        没有冗余的弹窗，没有铺满屏幕的广告条。打开就是赛事浏览、数据查看、以及围绕体育场景设计的简单工具入口。如果你习惯在手机上看比分、赛程或相关资讯，它提供了一个不折腾的选择。
+      </p>
+    </div>
+
+    <div class="traits-grid">
+      <div class="trait-item">
+        <h3>适配移动阅读</h3>
+        <p>页面布局随屏幕缩放，文字清晰，按钮大小合理，单手操作不勉强。</p>
+      </div>
+      <div class="trait-item">
+        <h3>聚焦体育场景</h3>
+        <p>从赛事列表到队伍数据，内容组织围绕体育迷的真实浏览习惯展开。</p>
+      </div>
+      <div class="trait-item">
+        <h3>低门槛访问</h3>
+        <p>无需下载安装，浏览器直接打开。适合临时查看或作为轻量辅助工具。</p>
+      </div>
+      <div class="trait-item">
+        <h3>信息密度克制</h3>
+        <p>不过度堆砌数据，保留核心模块，减少视觉疲劳感。</p>
+      </div>
+    </div>
+
+    <div class="scene-section">
+      <h2>一个常见的打开方式</h2>
+      <p>
+        傍晚，地铁里信号不算稳定。你打开手机浏览器，想看一眼今晚比赛的实时比分。页面加载快，列表里联赛名称清晰，点进某场比赛，比分和关键事件都在一屏之内。
+        不需要左右滑动找菜单，也不需要关掉碍事的横幅——这种干净的感觉，就是它想提供的日常体验。
+      </p>
+      <p>
+        当然，它不取代任何深度数据App或专业直播平台。它只是一个在手机浏览器里就能用的体育信息窗口，适合快速扫一眼、查个结果、确认赛程。
+      </p>
+    </div>
+
+    <div class="faq-mini">
+      <h2>一些常有疑问 · 简短回答</h2>
+      <div class="faq-item">
+        <strong>需要注册或登录吗？</strong>
+        <p>浏览赛事和比分等基础功能一般无需注册。部分互动或个性化功能视平台设计而定。</p>
+      </div>
+      <div class="faq-item">
+        <strong>适合在电脑上打开吗？</strong>
+        <p>主要为手机浏览器优化，电脑上访问同样可用，但移动端体验更贴合设计初衷。</p>
+      </div>
+      <div class="faq-item">
+        <strong>内容更新速度怎么样？</strong>
+        <p>赛事数据跟随官方信号源，通常接近实时。网络环境与赛事级别可能影响刷新延迟。</p>
+      </div>
+    </div>
+
+    <div class="outro-note">
+      <p>如果你平时只是偶尔看看比分、赛程，或者想找一个不那么拥挤的移动体育页面，<br>可以试着把 <a href="https://wap-web-mksports.com" class="accent-link">MK体育</a> 加到浏览器书签里。</p>
+      <p><small>一次打开，大概就能判断它适不适合你的习惯。</small></p>
+    </div>
+
+  </div>
+
+</body>
+</html>
